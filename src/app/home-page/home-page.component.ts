@@ -49,7 +49,11 @@ export class HomePageComponent implements OnInit {
 
   onCancelAppointment(description: string): void {
     this.appointmentList.forEach((item, index) => {
-      if ((item.description = description)) {
+      if ((item.description === description)) {
+
+        // let currentAppointmentList: AppointmentModel[] = this.appointmentList.slice();
+        // currentAppointmentList.splice(index, 1);
+        // this.appointmentList = currentAppointmentList;
         this.appointmentList.splice(index, 1);
       }
     });
