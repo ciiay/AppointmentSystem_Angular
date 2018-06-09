@@ -16,7 +16,7 @@ import { AppointmentModel } from "../models/appointment.model";
 export class NewAppointmentComponent implements OnInit {
   @Output() cancelAddingAppointment: EventEmitter<any> = new EventEmitter();
   @Output() appointmentAdded: EventEmitter<AppointmentModel> = new EventEmitter<AppointmentModel>();
-  @Output() showMessage: EventEmitter<any> = new EventEmitter();
+  @Output() showMessage: EventEmitter<string> = new EventEmitter();
 
   selectedDate: Date;
   description: string;
@@ -26,8 +26,10 @@ export class NewAppointmentComponent implements OnInit {
   ngOnInit() {}
 
   onAddAppointment() {
-    if (this.selectedDate.valueOf() < new Date().valueOf()) {
-      this.showMessage.emit();
+    if(!this.selectedDate || !this.description || this.description.trim() === "") {
+      this.showMessage.emit("Can not be empty.");
+    } else if (this.selectedDate.valueOf() < new Date().valueOf()) {
+      this.showMessage.emit("Can not set past date.");
     } else {
       this.appointmentAdded.emit(
         new AppointmentModel(this.selectedDate, this.description)

@@ -12,7 +12,7 @@ export class HomePageComponent implements OnInit {
   showTable: boolean = false;
   keyword: string = "";
   input: string = "";
-  message: string = "Can not set past date!!!";
+  message: string = "";
   showMessage: boolean = false;
 
   constructor() {}
@@ -68,7 +68,8 @@ export class HomePageComponent implements OnInit {
     }
   }
 
-  onShowMessage() {
+  onShowMessage(newMessage: string) {
     this.showMessage = true;
+    this.message = newMessage;
   }
 }
