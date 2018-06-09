@@ -44,6 +44,7 @@ export class HomePageComponent implements OnInit {
   onAppointmentAdded(newAppointment: AppointmentModel) {
     this.showTable = true;
     this.appointmentList.push(newAppointment);
+    this.showMessage = false;
   }
 
   onCancelAppointment(description: string): void {
