@@ -1,10 +1,13 @@
 <div class="alert alert-dismissible alert-danger">
   <strong>Appointment System</strong>
 </div>
-<button (click)="onAddNewAppointment()">NEW</button>
+<button *ngIf="!showNewAppointmentForm" (click)="onAddNewAppointment()">NEW</button>
 
-<app-new-appointment *ngIf="showNewAppointmentForm" (cancelAddingApppointment)="onCancelAddingAppointment()"
- (appointmentAdded)="onAppointmentAdded($event)" ></app-new-appointment>
+<app-new-appointment 
+   *ngIf="showNewAppointmentForm"
+   (cancelAddingAppointment)="onCancelAddingAppointment()"
+   (appointmentAdded)="onAppointmentAdded($event)" >
+</app-new-appointment>
 
 <div>
   <input placeholder="search the description" [(ngModel)]="input">
