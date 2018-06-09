@@ -3,14 +3,11 @@
 </div>
 <button *ngIf="!showNewAppointmentForm" (click)="onAddNewAppointment()">NEW</button>
 
-<app-new-appointment 
-   *ngIf="showNewAppointmentForm"
-   (cancelAddingAppointment)="onCancelAddingAppointment()"
-   (appointmentAdded)="onAppointmentAdded($event)" >
+<app-new-appointment *ngIf="showNewAppointmentForm" (cancelAddingAppointment)="onCancelAddingAppointment()" (appointmentAdded)="onAppointmentAdded($event)">
 </app-new-appointment>
 
 <div>
-  <input placeholder="search the description" [(ngModel)]="input">
+  <input placeholder="search the description" [(ngModel)]="keyword">
   <button (click)="onSearch()">SEARCH</button>
 </div>
 
@@ -21,14 +18,15 @@
     <th> CANCEL </th>
   </tr>
   <tr *ngFor="let appointment of appointmentList">
-    <td>
+    <td *ngIf="descriptionContainsKeyword(appointment.description)">
       {{ appointment.dateTime }}
     </td>
-    <td>
+    <td *ngIf="descriptionContainsKeyword(appointment.description)">
       {{ appointment.description }}
     </td>
-    <td>
+    <td *ngIf="descriptionContainsKeyword(appointment.description)">
       <button (click)="onCancelAppointment(appointment.description)"> CANCEL </button>
     </td>
+
   </tr>
 </table>

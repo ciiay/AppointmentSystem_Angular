@@ -9,6 +9,7 @@ import { AppointmentModel } from '../models/appointment.model';
 export class HomePageComponent implements OnInit {
   appointmentList: AppointmentModel[] = [];
   showNewAppointmentForm: boolean;
+  keyword: string;
 
   constructor() { }
 
@@ -43,6 +44,14 @@ export class HomePageComponent implements OnInit {
         this.appointmentList.splice(index,  1);
       }
     })
+  }
+
+  descriptionContainsKeyword(description: string): boolean {
+    if(description.includes(this.keyword)){
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }
