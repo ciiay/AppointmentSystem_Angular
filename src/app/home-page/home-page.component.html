@@ -12,7 +12,7 @@
     *ngIf="showNewAppointmentForm" 
     (cancelAddingAppointment)="onCancelAddingAppointment()" 
     (appointmentAdded)="onAppointmentAdded($event)"
-    (showMessage)="onShowMessage()">
+    (showMessage)="onShowMessage($event)">
   </app-new-appointment>
   
   <div class="search-container">
