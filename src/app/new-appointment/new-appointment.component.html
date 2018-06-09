@@ -1,0 +1,12 @@
+<div class="alert alert-dismissible alert-danger">
+  <strong> ADD NEW APPOINTMENT </strong>
+</div>
+
+<button (click)="onAddAppointment()"> ADD </button>
+<button (click)="onCancel()">CANCEL</button>
+
+<div>
+  <h1>Please choose a date/time</h1>
+  <dp-date-picker #dayPicker [(ngModel)]="selectedDate"></dp-date-picker>
+  <input placeholder="What to do..." [(ngModel)]="description">
+</div>
