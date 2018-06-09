@@ -1,39 +1,41 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
-import { DatePickerComponent } from 'ng2-date-picker';
-import { AppointmentModel } from '../models/appointment.model';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  ViewChild
+} from "@angular/core";
+import { DatePickerComponent } from "ng2-date-picker";
+import { AppointmentModel } from "../models/appointment.model";
 
 @Component({
-  selector: 'app-new-appointment',
-  templateUrl: './new-appointment.component.html',
-  styleUrls: ['./new-appointment.component.css']
+  selector: "app-new-appointment",
+  templateUrl: "./new-appointment.component.html",
+  styleUrls: ["./new-appointment.component.css"]
 })
 export class NewAppointmentComponent implements OnInit {
-
-  @ViewChild('dayPicker') datePicker: DatePickerComponent;
   @Output() cancelAddingAppointment: EventEmitter<any> = new EventEmitter();
   @Output() appointmentAdded: EventEmitter<AppointmentModel> = new EventEmitter<AppointmentModel>();
-  selectedDate;
+  @Output() showMessage: EventEmitter<any> = new EventEmitter();
+
+  selectedDate: Date;
   description: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  onAddAppointment(){
-    this.appointmentAdded.emit(new AppointmentModel(this.selectedDate, this.description));
+  onAddAppointment() {
+    if (this.selectedDate.valueOf() < new Date().valueOf()) {
+      this.showMessage.emit();
+    } else {
+      this.appointmentAdded.emit(
+        new AppointmentModel(this.selectedDate, this.description)
+      );
+    }
   }
 
   onCancel() {
     this.cancelAddingAppointment.emit();
   }
-
-  open() {
-    this.datePicker.api.open();
-  }
-
-  close() {
-    this.datePicker.api.close();
-  }
-
 }

@@ -1,16 +1,23 @@
 <div class="alert alert-dismissible alert-danger">
   <strong>Appointment System</strong>
 </div>
+<div *ngIf="showMessage" >
+    {{ message }}
+</div>
+<br />
 <button *ngIf="!showNewAppointmentForm" (click)="onAddNewAppointment()">NEW</button>
 
-<app-new-appointment *ngIf="showNewAppointmentForm" (cancelAddingAppointment)="onCancelAddingAppointment()" (appointmentAdded)="onAppointmentAdded($event)">
+<app-new-appointment 
+  *ngIf="showNewAppointmentForm" 
+  (cancelAddingAppointment)="onCancelAddingAppointment()" 
+  (appointmentAdded)="onAppointmentAdded($event)"
+  (showMessage)="onShowMessage()">
 </app-new-appointment>
 
 <div>
   <input placeholder="search the description" [(ngModel)]="input">
   <button (click)="onSearch()">SEARCH</button>
 </div>
-
 <table *ngIf="showTable" class="table table-striped table-hover" border="1">
   <tr>
     <th> Appointment Date </th>
@@ -27,6 +34,5 @@
     <td *ngIf="descriptionContainsKeyword(appointment.description)">
       <button (click)="onCancelAppointment(appointment.description)"> CANCEL </button>
     </td>
-
   </tr>
 </table>

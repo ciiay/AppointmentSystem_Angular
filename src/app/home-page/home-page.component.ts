@@ -1,26 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { AppointmentModel } from '../models/appointment.model';
+import { Component, OnInit } from "@angular/core";
+import { AppointmentModel } from "../models/appointment.model";
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  selector: "app-home-page",
+  templateUrl: "./home-page.component.html",
+  styleUrls: ["./home-page.component.css"]
 })
 export class HomePageComponent implements OnInit {
   appointmentList: AppointmentModel[] = [];
   showNewAppointmentForm: boolean;
   showTable: boolean = false;
-  keyword: string = '';
-  input: string;
+  keyword: string = "";
+  input: string = "";
+  message: string = "Can not set past date!!!";
+  showMessage: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.showNewAppointmentForm = false;
     this.appointmentList = Array<AppointmentModel>();
-    this.appointmentList.push(new AppointmentModel(new Date(), 'Something'));
-    this.appointmentList.push(new AppointmentModel(new Date(), 'Something else'));
-    this.appointmentList.push(new AppointmentModel(new Date(), 'Meet foo'));
+    this.appointmentList.push(new AppointmentModel(new Date(), "Something"));
+    this.appointmentList.push(
+      new AppointmentModel(new Date(), "Something else")
+    );
+    this.appointmentList.push(new AppointmentModel(new Date(), "Meet foo"));
   }
 
   onSearch(): void {
@@ -30,7 +34,7 @@ export class HomePageComponent implements OnInit {
 
   onAddNewAppointment(): void {
     this.showNewAppointmentForm = true;
-    const dateFormat = 'M/D/YY';
+    const dateFormat = "M/D/YY";
   }
 
   onCancelAddingAppointment() {
@@ -38,28 +42,31 @@ export class HomePageComponent implements OnInit {
   }
 
   onAppointmentAdded(newAppointment: AppointmentModel) {
+    this.showTable = true;
     this.appointmentList.push(newAppointment);
   }
 
   onCancelAppointment(description: string): void {
-    this.appointmentList.forEach((item, index)=> {
-      if(item.description = description) {
-        this.appointmentList.splice(index,  1);
+    this.appointmentList.forEach((item, index) => {
+      if ((item.description = description)) {
+        this.appointmentList.splice(index, 1);
       }
-    })
+    });
   }
 
   descriptionContainsKeyword(description: string): boolean {
-
-    if(this.keyword === ''){
+    if (this.keyword === "") {
       return true;
-    } 
+    }
 
-    if(description.includes(this.keyword)){
+    if (description.includes(this.keyword)) {
       return true;
     } else {
       return false;
     }
   }
 
+  onShowMessage() {
+    this.showMessage = true;
+  }
 }
