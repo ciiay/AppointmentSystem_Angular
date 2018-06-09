@@ -7,11 +7,11 @@
 </app-new-appointment>
 
 <div>
-  <input placeholder="search the description" [(ngModel)]="keyword">
+  <input placeholder="search the description" [(ngModel)]="input">
   <button (click)="onSearch()">SEARCH</button>
 </div>
 
-<table class="table table-striped table-hover" border="1">
+<table *ngIf="showTable" class="table table-striped table-hover" border="1">
   <tr>
     <th> Appointment Date </th>
     <th> Description </th>

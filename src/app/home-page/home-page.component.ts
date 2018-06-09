@@ -9,7 +9,9 @@ import { AppointmentModel } from '../models/appointment.model';
 export class HomePageComponent implements OnInit {
   appointmentList: AppointmentModel[] = [];
   showNewAppointmentForm: boolean;
-  keyword: string;
+  showTable: boolean = false;
+  keyword: string = '';
+  input: string;
 
   constructor() { }
 
@@ -22,7 +24,8 @@ export class HomePageComponent implements OnInit {
   }
 
   onSearch(): void {
-    this.showNewAppointmentForm = false;
+    this.showTable = true;
+    this.keyword = this.input;
   }
 
   onAddNewAppointment(): void {
@@ -47,6 +50,11 @@ export class HomePageComponent implements OnInit {
   }
 
   descriptionContainsKeyword(description: string): boolean {
+
+    if(this.keyword === ''){
+      return true;
+    } 
+
     if(description.includes(this.keyword)){
       return true;
     } else {
