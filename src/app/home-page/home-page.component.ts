@@ -61,10 +61,10 @@ export class HomePageComponent implements OnInit {
       return true;
     }
 
-    if (description.includes(this.keyword)) {
-      return true;
-    } else {
+    if (description.toLowerCase().indexOf(this.keyword.toLowerCase()) === -1) { 
       return false;
+    } else {
+      return true;
     }
   }
 
