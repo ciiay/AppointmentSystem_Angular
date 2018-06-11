@@ -3,7 +3,8 @@ import {
   OnInit,
   Output,
   EventEmitter,
-  ViewChild
+  ViewChild,
+  ElementRef
 } from "@angular/core";
 import { DatePickerComponent } from "ng2-date-picker";
 import { AppointmentModel } from "../models/appointment.model";
@@ -14,6 +15,7 @@ import { AppointmentModel } from "../models/appointment.model";
   styleUrls: ["./new-appointment.component.css"]
 })
 export class NewAppointmentComponent implements OnInit {
+  
   @Output() cancelAddingAppointment: EventEmitter<any> = new EventEmitter();
   @Output() appointmentAdded: EventEmitter<AppointmentModel> = new EventEmitter<AppointmentModel>();
   @Output() showMessage: EventEmitter<string> = new EventEmitter();
@@ -34,6 +36,8 @@ export class NewAppointmentComponent implements OnInit {
       this.appointmentAdded.emit(
         new AppointmentModel(this.selectedDate, this.description)
       );
+      this.selectedDate = null;
+      this.description = "";
     }
   }
 
