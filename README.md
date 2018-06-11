@@ -10,6 +10,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Functionalities
 
+Please referencce screenshots for further information in Screenhots folder.
 * Creat new appointment
 1. Click "NEW" button to show input fields for creating new appointment.
 2. Pick date/time and input description to creat new appointment.
