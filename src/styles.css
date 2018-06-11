@@ -34,3 +34,8 @@ h4 {
 .alert {
     margin-bottom: 0;
 }
+
+.footer {
+    position: absolute;
+    top: 98px;
+}
