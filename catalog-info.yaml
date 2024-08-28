@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: AppointmentSystem_Angular
+  annotations:
+    github.com/project-slug: ciiay/AppointmentSystem_Angular
+spec:
+  type: other
+  lifecycle: unknown
+  owner: user:default/ciiay
